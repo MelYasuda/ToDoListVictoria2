@@ -9,7 +9,7 @@ namespace ToDoList.Models
     private int _id;
     private List<Item> _items;
 
-    public Category (string categoryName)
+    public Category(string categoryName)
     {
       _name = categoryName;
       _instances.Add(this);
@@ -35,7 +35,7 @@ namespace ToDoList.Models
     }
     public static Category Find(int searchId)
     {
-      return _instances[searchId-1]
+      return _instances[searchId-1];
     }
     public List<Item> GetItems()
     {

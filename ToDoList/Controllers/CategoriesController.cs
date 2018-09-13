@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System;
-using Microsoft.AspNetCore.MVC;
+using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 
 namespace ToDoList.Controllers
 {
-  public class CategoriesController : Controllers{
+  public class CategoriesController : Controller
+  {
     [HttpGet("/categories")]
     public ActionResult Index()
     {
@@ -24,7 +25,7 @@ namespace ToDoList.Controllers
       List<Category> allCategories = Category.GetAll();
       return View("Index", allCategories);
     }
-    [HttpGet("/category/{id}")]
+    [HttpGet("/categories/{id}")]
     public ActionResult Details(int id)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
@@ -44,7 +45,7 @@ namespace ToDoList.Controllers
       List<Item> categoryItems = foundCategory.GetItems();
       model.Add("items", categoryItems);
       model.Add("category", foundCategory);
-      return view("Details", model);
+      return View("Details", model);
     }
   }
 }
