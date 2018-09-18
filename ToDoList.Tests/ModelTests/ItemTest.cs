@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using ToDoList.Models;
+using System;
 
 namespace ToDoList.Tests
 {
@@ -12,50 +13,50 @@ namespace ToDoList.Tests
       Item.ClearAll();
     }
 
-    [TestMethod]
-    public void GetDescription_ReturnsDescription_String()
-    {
-      //Arrange
-      string description = "Walk the dog.";
-      Item newItem = new Item(description);
-
-      //Act
-      string result = newItem.GetDescription();
-
-      //Assert
-      Assert.AreEqual(description, result);
-    }
-
-    [TestMethod]
-    public void SetDescription_SetDescription_String()
-    {
-      //Arrange
-      string description = "Walk the dog.";
-      Item newItem = new Item(description);
-
-      //Act
-      newItem.SetDescription("Do the dishes");
-      string result = newItem.GetDescription();
-
-      //Assert
-      Assert.AreEqual(description, result);
-    }
-
-    [TestMethod]
-    public void Save_ItemIsSavedToInstances_Item()
-    {
-      //Arrange
-      string description = "Walk the dog.";
-      Item newItem = new Item(description);
-      newItem.Save();
-
-      //Act
-      List<Item> instances = Item.GetAll();
-      Item savedItem = instances[0];
-
-      //Assert
-      Assert.AreEqual(newItem, savedItem);
-    }
+    // [TestMethod]
+    // public void GetDescription_ReturnsDescription_String()
+    // {
+    //   //Arrange
+    //   string description = "Walk the dog.";
+    //   Item newItem = new Item(description);
+    //
+    //   //Act
+    //   string result = newItem.GetDescription();
+    //
+    //   //Assert
+    //   Assert.AreEqual(description, result);
+    // }
+    //
+    // [TestMethod]
+    // public void SetDescription_SetDescription_String()
+    // {
+    //   //Arrange
+    //   string description = "Walk the dog.";
+    //   Item newItem = new Item(description);
+    //
+    //   //Act
+    //   newItem.SetDescription("Do the dishes");
+    //   string result = newItem.GetDescription();
+    //
+    //   //Assert
+    //   Assert.AreEqual(description, result);
+    // }
+    //
+    // [TestMethod]
+    // public void Save_ItemIsSavedToInstances_Item()
+    // {
+    //   //Arrange
+    //   string description = "Walk the dog.";
+    //   Item newItem = new Item(description);
+    //   newItem.Save();
+    //
+    //   //Act
+    //   List<Item> instances = Item.GetAll();
+    //   Item savedItem = instances[0];
+    //
+    //   //Assert
+    //   Assert.AreEqual(newItem, savedItem);
+    // }
 
     [TestMethod]
     public void GetAll_ReturnsItems_ItemList()

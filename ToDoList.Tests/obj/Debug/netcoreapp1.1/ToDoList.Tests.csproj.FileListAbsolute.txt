@@ -1,0 +1,4 @@
+/Users/victoria/Desktop/ToDoListCategory.Solution/ToDoList.Tests/obj/Debug/netcoreapp1.1/ToDoList.Tests.csprojAssemblyReference.cache
+/Users/victoria/Desktop/ToDoListCategory.Solution/ToDoList.Tests/obj/Debug/netcoreapp1.1/ToDoList.Tests.csproj.CoreCompileInputs.cache
+/Users/victoria/Desktop/ToDoListCategory.Solution/ToDoList.Tests/obj/Debug/netcoreapp1.1/ToDoList.Tests.AssemblyInfoInputs.cache
+/Users/victoria/Desktop/ToDoListCategory.Solution/ToDoList.Tests/obj/Debug/netcoreapp1.1/ToDoList.Tests.AssemblyInfo.cs

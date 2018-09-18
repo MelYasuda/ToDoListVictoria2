@@ -24,9 +24,27 @@ namespace ToDoList.Models
     {
       _description = newDescription;
     }
+
+    public static void DeleteAll()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM items;";
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public static List<Item> GetAll()
         {
-            List<Item> allItems = new List<Item> {};
+            List<Item> allItems = new List<Item> {new Item("test item")};
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
