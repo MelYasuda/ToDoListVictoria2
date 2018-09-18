@@ -10,7 +10,22 @@ namespace ToDoList.Tests
   {
     public void Dispose()
     {
-      Item.ClearAll();
+      Item.DeleteAll();
+    }
+    public ItemTest()
+    {
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=todo_test;";
+    }
+
+    [TestMethod]
+    public void GetAll_DbStartsEmpty_0()
+    {
+      //Arrange
+      //Act
+      int result = Item.GetAll().Count;
+
+      //Assert
+      Assert.AreEqual(0, result);
     }
 
     // [TestMethod]
@@ -58,23 +73,23 @@ namespace ToDoList.Tests
     //   Assert.AreEqual(newItem, savedItem);
     // }
 
-    [TestMethod]
-    public void GetAll_ReturnsItems_ItemList()
-    {
-      //Arrange
-      string description01 = "Walk the dog";
-      string description02 = "Wash the dishes";
-      Item newItem1 = new Item(description01);
-      newItem1.Save();
-      Item newItem2 = new Item(description02);
-      newItem2.Save();
-      List<Item> newList = new List<Item> { newItem1, newItem2 };
-
-      //Act
-      List<Item> result = Item.GetAll();
-
-      //Assert
-      CollectionAssert.AreEqual(newList, result);
-    }
+    // [TestMethod]
+    // public void GetAll_ReturnsItems_ItemList()
+    // {
+    //   //Arrange
+    //   string description01 = "Walk the dog";
+    //   string description02 = "Wash the dishes";
+    //   Item newItem1 = new Item(description01);
+    //   newItem1.Save();
+    //   Item newItem2 = new Item(description02);
+    //   newItem2.Save();
+    //   List<Item> newList = new List<Item> { newItem1, newItem2 };
+    //
+    //   //Act
+    //   List<Item> result = Item.GetAll();
+    //
+    //   //Assert
+    //   CollectionAssert.AreEqual(newList, result);
+    // }
   }
 }

@@ -44,7 +44,7 @@ namespace ToDoList.Models
 
     public static List<Item> GetAll()
         {
-            List<Item> allItems = new List<Item> {new Item("test item")};
+            List<Item> allItems = new List<Item> {};
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
