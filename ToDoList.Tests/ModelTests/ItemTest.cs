@@ -77,13 +77,52 @@ namespace ToDoList.Tests
       //Arrange
       Item testItem = new Item("Mow the lawn");
       testItem.Save();
-    
+
       //Act
       Item foundItem = Item.Find(testItem.GetId());
 
       //Assert
       Assert.AreEqual(testItem, foundItem);
     }
+
+    [TestMethod]
+    public void Edit_UpdatesItemInDatabase_String()
+    {
+      //Arrange
+      string firstDescription = "Walk the dog";
+      Item testItem = new Item(firstDescription, 1);
+      testItem.Save();
+      string secondDescription = "Mow the lawn";
+
+      //Act
+      testItem.Edit(secondDescription);
+
+      string result = Item.Find(testItem.GetId()).GetDescription();
+
+      //Assert
+      Assert.AreEqual(secondDescription, result);
+    }
+
+    [TestMethod]
+    public void Delete_DeletesItemInDatabase_true()
+    {
+      //Arrange
+      string firstDescription = "Walk the dog";
+      Item testItem = new Item(firstDescription, 1);
+      testItem.Save();
+      string secondDescription = "";
+
+
+      //Act
+      testItem.Delete();
+
+      string result = Item.Find(testItem.GetId()).GetDescription();
+
+      //Assert
+      Assert.AreEqual(secondDescription, result);
+    }
+
+
 
     // [TestMethod]
     // public void GetDescription_ReturnsDescription_String()

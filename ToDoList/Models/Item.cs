@@ -9,6 +9,7 @@ namespace ToDoList.Models
   {
     private int _id;
     private string _description;
+    private static List<Item> _instances = new List<Item> {};
 
     public Item(string Description, int Id = 0)
     {
@@ -27,7 +28,7 @@ namespace ToDoList.Models
         Item newItem = (Item) otherItem;
         bool idEquality = (this.GetId() == newItem.GetId());
         bool descriptionEquality = (this.GetDescription() == newItem.GetDescription());
-        return (descriptionEquality);
+        return (idEquality && descriptionEquality);
       }
     }
 
@@ -89,6 +90,54 @@ namespace ToDoList.Models
       return foundItem;
     }
 
+    public void Edit(string newDescription)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE items SET description = @newDescription WHERE id = @searchId";
+
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
+
+      MySqlParameter description = new MySqlParameter();
+      description.ParameterName = "@newDescription";
+      description.Value = newDescription;
+      cmd.Parameters.Add(description);
+
+      cmd.ExecuteNonQuery();
+      _description = newDescription;
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public void Delete()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM items WHERE id = @thisId;";
+
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = _id;
+      cmd.Parameters.Add(thisId);
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public string GetDescription()
     {
       return _description;
@@ -146,5 +195,11 @@ namespace ToDoList.Models
             }
             return allItems;
         }
+
+    public static void ClearAll()
+    {
+      _instances.Clear();
+    }
+
   }
 }
