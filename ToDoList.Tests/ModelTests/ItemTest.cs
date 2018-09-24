@@ -138,5 +138,22 @@ namespace ToDoList.Tests
       //Assert
       CollectionAssert.AreEqual(testCategoryItems, resultCategoryItems);
     }
+
+    // [TestMethod]
+    // public void Done_ChangeStatusDoneTo1_True()
+    // {
+    //   //Arrange
+    //   Item testItem = new Item("Mow the lawn");
+    //   testItem.Save();
+    //
+    //   //Act
+    //   testItem.Done();
+    //   Item result = testItem.GetDone();
+    //
+    //   //Assert
+    //   CollectionAssert.AreEqual(testItem, result);
+    // }
+
+
   }
 }

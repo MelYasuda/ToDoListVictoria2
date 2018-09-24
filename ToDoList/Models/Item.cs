@@ -8,6 +8,7 @@ namespace ToDoList.Models
   {
     private string _description;
     private int _id;
+    private bool _done = false;
 
     public Item(string description, int id = 0)
     {
@@ -26,13 +27,48 @@ namespace ToDoList.Models
         Item newItem = (Item) otherItem;
         bool idEquality = this.GetId() == newItem.GetId();
         bool descriptionEquality = this.GetDescription() == newItem.GetDescription();
-        return (idEquality && descriptionEquality);
+        bool doneEquality = this.GetDone() == newItem.GetDone();
+        return (idEquality && descriptionEquality && doneEquality);
       }
     }
+
     public override int GetHashCode()
     {
       return this.GetDescription().GetHashCode();
     }
+
+    // public void Done()
+    // {
+    //   MySqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //
+    //   var cmd = conn.CreateCommand() as MySqlCommand;
+    //   cmd.CommandText = @"UPDATE items SET done = 1 WHERE id = @itemId;";
+    //
+    //   MySqlParameter itemId = new MySqlParameter();
+    //   itemId.ParameterName = "@itemId";
+    //   itemId.Value = _id;
+    //   cmd.Parameters.Add(itemId);
+    //
+    //   cmd.ExecuteNonQuery();
+    //   _done = true;
+    //
+    //   conn.Close();
+    //   if (conn != null)
+    //   {
+    //     conn.Dispose();
+    //   }
+    // }
+    //
+    // public bool GetDone()
+    // {
+    //   return false;
+    // }
+    //
+    // public void SetDone()
+    // {
+    //   _done = true;
+    // }
 
     public string GetDescription()
     {
